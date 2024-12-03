@@ -1,0 +1,122 @@
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<script src="https://cdn.tailwindcss.com"></script>
+		<title>Astro</title>
+	</head>
+	<body
+		class="bg-gray-900 text-white h-screen"
+	>
+		<div
+			class=" h-full ocean-container relative linear-gradient-to-b from-blue-500 to-blue-800 overflow-hidden items-center justify-center"
+		>
+			<div class="waves">
+				<div class="liquid "></div>
+				<div class="liquid liquid-sm left-28"></div>
+
+				<div class="liquid liquid-2" ></div>
+				<div class="liquid-2 liquid  liquid-sm" ></div>
+
+				<div class="liquid liquid-3" ></div>
+				<div class="liquid-3 liquid  liquid-sm" ></div>
+
+				<div class="liquid liquid-4" ></div>
+				<div class="liquid-4 liquid  liquid-sm" ></div>
+
+				<div class="liquid liquid-5" ></div>
+				<div class="liquid-5 liquid  liquid-sm" ></div>
+
+				<div class="liquid liquid-6" ></div>
+				<div class="liquid-6 liquid  liquid-sm" ></div>
+			</div>
+        </div>
+
+	</body>
+	<style>
+		.ocean-container{
+			background:linear-gradient(to bottom, #7293ff, #0c1121);
+		}
+		.waves{
+			left:12vw;
+			position:relative;
+			top:-50vh;
+			background: rgba(20, 20, 20, 1);
+			animation: move 27s ease infinite;
+		}
+
+		.liquid {
+			top: -50vh;
+			position: absolute;
+			rotate:90deg;
+			transition: 1.6s;
+			width: 70vw;
+			height: 100vw;
+			background: rgba(20, 20, 20, 1);
+			border-radius: 50%;
+			animation: animate 27s linear infinite;
+		}
+		.liquid-2{
+			margin-left:25vw;
+		}
+		.liquid-3{
+			margin-left:50vw;
+		}
+		.liquid-5{
+			margin-left:75vw;
+		}
+		.liquid-4{
+			margin-left:-25vw;
+		}
+		.liquid-6{
+			margin-left:-50vw;
+		}
+
+		.liquid-sm{
+			/* box-shadow: 0 0 10px 5px #7293ff, inset 0 0 5px #7293ff; */
+			left:2vw;
+			top:-25vw;
+			opacity: 0.1;
+			z-index:-1;
+		}
+
+        @keyframes move {
+            0% {
+                transform: translate(0, -25%)  ;
+            }
+            25% {
+                transform: translate(-25% , 0%)  ;
+            }
+            50% {
+                transform: translate(0 , 25%)  ;
+            }
+            75%{
+                transform: translate(-25% ,  0%)  ;
+            }
+            100%{
+                transform: translate(0 , -25%) ;
+            }
+        }
+        @keyframes animate {
+			0% {
+				transform:  rotate(0deg);
+			}
+			25% {
+				transform: rotate(90deg);
+			}
+			50% {
+				transform:   rotate(180deg);
+			}
+			75%{
+				transform:   rotate(270deg);
+			}
+			100%{
+				transform:   rotate(360deg);
+			}
+
+		}
+	</style>
+</html>
+
