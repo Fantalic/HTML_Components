@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown Viewer</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Custom styles */
+        .popup-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .popup-content {
+            background-color: rgba(173, 216, 230, 0.9); /* Light blue with transparency */
+            color: #1e3a8a; /* Deep blue text */
+            padding: 40px;
+            border-radius: 50%; /* Perfect circle */
+            width: 400px;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border: 3px solid rgba(255, 255, 255, 0.5);
+            animation: floatBubble 4s infinite ease-in-out;
+        }
+
+        .popup-content-inner {
+            max-width: 90%;
+            max-height: 90%;
+            font-size: 1.1rem;
+            font-weight: 500;
+            line-height: 1.5;
+            overflow: hidden;
+            word-wrap: break-word;
+        }
+
+        @keyframes floatBubble {
+            0% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-10px) scale(1.05); }
+            100% { transform: translateY(0) scale(1); }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 h-screen flex items-center justify-center">
+
+<button id="showPopupBtn" class="bg-blue-600 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded-lg shadow-md">
+    Show README.md file text
+</button>
+
+<div id="popupContainer" class="popup-container">
+    <div class="popup-content">
+        <div class="popup-content-inner" id="markdownContent">
+            <!-- Markdown content will be loaded here -->
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+    const showPopupBtn = document.getElementById('showPopupBtn');
+    const popupContainer = document.getElementById('popupContainer');
+    const markdownContent = document.getElementById('markdownContent');
+
+    function loadMarkdown(file) {
+        fetch(file)
+            .then(response => response.text())
+            .then(markdownText => {
+                markdownContent.innerHTML = marked.parse(markdownText);
+            });
+    }
+
+    showPopupBtn.addEventListener('click', function() {
+        popupContainer.style.display = 'flex';
+        loadMarkdown('README.md');
+    });
+
+    popupContainer.addEventListener('click', function(event) {
+        if (event.target === popupContainer) {
+            popupContainer.style.display = 'none';
+            markdownContent.innerHTML = '';
+        }
+    });
+</script>
+
+</body>
+</html>
